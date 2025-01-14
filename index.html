@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebKit and Non-WebKit Example</title>
+  <style>
+    /* Default styles for all browsers */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      text-align: center;
+      height: 300vh;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: 2px solid #007BFF;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    /* Styles for WebKit-based browsers */
+    @supports (-webkit-appearance: none) {
+      button {
+        background: linear-gradient(to right, #007BFF, #00C6FF);
+        color: white;
+        -webkit-box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        -webkit-transition: all 0.3s ease-in-out;
+      }
+
+      button:hover {
+        -webkit-transform: scale(1.1);
+      }
+    }
+
+    /* Styles for Non-WebKit browsers */
+    @supports not (-webkit-appearance: none) {
+      button {
+        background: linear-gradient(to right, #FF7E5F, #FEB47B);
+        color: white;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease-in-out;
+      }
+
+      button:hover {
+        transform: scale(1.1);
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>WebKit and Non-WebKit Example</h1>
+  <p>This button style adapts based on your browser:</p>
+  <button id="dynamicButton">Click Me</button>
+
+  <script>
+    // JavaScript to detect the browser and apply specific behaviors
+    const button = document.getElementById('dynamicButton');
+    if (navigator.userAgent.includes('WebKit')) {
+      button.textContent = 'You are using a WebKit-based browser!';
+    } else {
+      button.textContent = 'You are NOT using a WebKit-based browser!';
+    }
+
+    // Add a click event listener to the button
+    button.addEventListener('click', () => {
+      alert('Button clicked!');
+    });
+  </script>
+</body>
+  </html>
+  
